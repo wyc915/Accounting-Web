@@ -45,7 +45,7 @@ export function Layout() {
       <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r border-border bg-surface/60 px-4 py-6 backdrop-blur lg:flex">
         <div className="mb-6 flex items-center gap-2.5 px-2">
           <img src="/icon.svg" alt="" className="size-9" />
-          <span className="text-lg font-extrabold tracking-tight">薄荷記帳</span>
+          <span className="text-lg font-extrabold tracking-tight">點滴記帳</span>
         </div>
         <motion.button
           whileHover={{ y: -1 }}

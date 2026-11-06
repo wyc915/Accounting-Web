@@ -1,6 +1,6 @@
 {
-  "name": "薄荷記帳",
-  "short_name": "薄荷記帳",
+  "name": "點滴記帳",
+  "short_name": "點滴記帳",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6faf8",

@@ -64,7 +64,7 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
             transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.1 }}
           />
           <h1 className="text-2xl font-extrabold tracking-tight">{reg ? '建立帳號' : '歡迎回來'}</h1>
-          <p className="mt-1 text-sm text-muted">{reg ? '開始輕鬆管理每一筆收支' : '登入薄荷記帳，繼續記錄生活'}</p>
+          <p className="mt-1 text-sm text-muted">{reg ? '開始輕鬆管理每一筆收支' : '登入點滴記帳，繼續記錄生活'}</p>
         </div>
 
         <form onSubmit={submit} className="card space-y-4 border-white/60 bg-surface/80 p-6 backdrop-blur-xl dark:border-border">

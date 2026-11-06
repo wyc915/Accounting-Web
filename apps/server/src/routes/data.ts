@@ -298,13 +298,17 @@ function backup(uid: number, withPhotos: boolean) {
         .map((a) => ({ transaction_id: a.transaction_id, mime: a.mime, data: readFileSync(attachmentPath(uid, a.file)).toString('base64') }))
     : [];
   const u = sqlite.prepare(`SELECT base_currency, lock_minutes FROM users WHERE id = ?`).get(uid) as { base_currency: string; lock_minutes: number };
-  return { app: 'mint-ledger', version: 1, exportedAt: new Date().toISOString(), settings: u, data };
+  return { app: BACKUP_APP_ID, version: 1, exportedAt: new Date().toISOString(), settings: u, data };
 }
+
+/** current backup id; 'mint-ledger' = backups made before the rename to 點滴記帳 */
+const BACKUP_APP_ID = 'diandi-ledger';
+const ACCEPTED_APP_IDS = [BACKUP_APP_ID, 'mint-ledger'];
 
 type Rec = Record<string, unknown>;
 function restore(uid: number, payload: unknown) {
   const p = payload as { app?: string; version?: number; settings?: Rec; data?: Record<string, Rec[]> };
-  if (p?.app !== 'mint-ledger' || p.version !== 1 || !p.data) throw new HttpError(400, '不是有效的薄荷記帳備份檔');
+  if (!ACCEPTED_APP_IDS.includes(p?.app ?? '') || p.version !== 1 || !p.data) throw new HttpError(400, '不是有效的點滴記帳備份檔');
   const d = p.data;
   const base = String(p.settings?.base_currency ?? 'TWD');
   if (!CURRENCY_CODES.includes(base as never)) throw new HttpError(400, '備份檔幣別無效');
@@ -422,7 +426,7 @@ export async function dataRoutes(app: FastifyInstance) {
     const stamp = format(new Date(), 'yyyyMMdd');
     if (q.format === 'xlsx') {
       const wb = new ExcelJS.Workbook();
-      wb.creator = '薄荷記帳';
+      wb.creator = '點滴記帳';
       const ws = wb.addWorksheet('記帳明細', { views: [{ state: 'frozen', ySplit: 1 }] });
       ws.columns = HEADERS.map((h, i) => ({ header: h, width: [18, 8, 12, 7, 14, 14, 12, 12, 12, 28, 18][i] }));
       ws.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
@@ -434,13 +438,13 @@ export async function dataRoutes(app: FastifyInstance) {
       const buf = await wb.xlsx.writeBuffer();
       return reply
         .header('content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        .header('content-disposition', `attachment; filename="ledger-${stamp}.xlsx"`)
+        .header('content-disposition', `attachment; filename="diandi-${stamp}.xlsx"`)
         .send(Buffer.from(buf as ArrayBuffer));
     }
     const csv = '﻿' + [HEADERS, ...rows].map((r) => r.map(csvCell).join(',')).join('\r\n');
     return reply
       .header('content-type', 'text/csv; charset=utf-8')
-      .header('content-disposition', `attachment; filename="ledger-${stamp}.csv"`)
+      .header('content-disposition', `attachment; filename="diandi-${stamp}.csv"`)
       .send(csv);
   });
 
@@ -477,7 +481,7 @@ export async function dataRoutes(app: FastifyInstance) {
     const json = JSON.stringify(backup(req.user.uid, withPhotos));
     return reply
       .header('content-type', 'application/json; charset=utf-8')
-      .header('content-disposition', `attachment; filename="mint-ledger-backup-${format(new Date(), 'yyyyMMdd-HHmm')}.json"`)
+      .header('content-disposition', `attachment; filename="diandi-backup-${format(new Date(), 'yyyyMMdd-HHmm')}.json"`)
       .send(json);
   });
 
