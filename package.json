@@ -1,0 +1,21 @@
+{
+  "name": "ledger-app",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c green,cyan \"npm run dev -w apps/server\" \"npm run dev -w apps/web\"",
+    "build": "npm run build -w apps/web",
+    "start": "npm run start -w apps/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5",
+    "typescript": "^7.0.2"
+  },
+  "optionalDependencies": {
+    "@esbuild/win32-x64": "0.28.2",
+    "@rolldown/binding-win32-x64-msvc": "1.2.16"
+  }
+}

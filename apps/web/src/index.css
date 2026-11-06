@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f8f6;
+  --surface: #ffffff;
+  --surface-2: #eef4f1;
+  --border: #e2ebe6;
+  --fg: #0f1f1a;
+  --muted: #6b7f78;
+  --primary: #10b981;
+  --primary-strong: #059669;
+  --primary-soft: #d1fae5;
+  --expense: #f43f5e;
+  --income: #10b981;
+  --transfer: #0ea5e9;
+  /* chart pair — validated for CVD + contrast in both modes */
+  --chart-income: #0d9488;
+  --chart-expense: #e8590c;
+  --chart-grid: #e6ede9;
+  --shadow: 0 1px 2px rgb(16 40 32 / 0.04), 0 8px 24px -8px rgb(16 40 32 / 0.08);
+}
+.dark {
+  --bg: #0b1210;
+  --surface: #121c19;
+  --surface-2: #1a2723;
+  --border: #22322d;
+  --fg: #e8f2ee;
+  --muted: #8ba39a;
+  --primary: #34d399;
+  --primary-strong: #10b981;
+  --primary-soft: #0f3a2d;
+  --expense: #fb7185;
+  --income: #34d399;
+  --transfer: #38bdf8;
+  --chart-income: #0d9488;
+  --chart-expense: #e8590c;
+  --chart-grid: #1f2e29;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -8px rgb(0 0 0 / 0.5);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-expense: var(--expense);
+  --color-income: var(--income);
+  --color-transfer: var(--transfer);
+  --color-chart-income: var(--chart-income);
+  --color-chart-expense: var(--chart-expense);
+  --shadow-card: var(--shadow);
+  --font-sans: 'Inter', 'Noto Sans TC', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-tap-highlight-color: transparent;
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
+  }
+  body {
+    @apply font-sans antialiased;
+    overscroll-behavior-y: none;
+  }
+  ::selection {
+    background: var(--primary-soft);
+  }
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* prevent iOS zoom */
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
+@utility card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+@utility num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
