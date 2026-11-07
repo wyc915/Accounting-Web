@@ -127,6 +127,10 @@ export interface User {
   pinEnabled: boolean;
   lockMinutes: number;
   locked?: boolean;
+  /** mobile: biometric quick-unlock enabled */
+  biometric?: boolean;
+  /** mobile: first-run setup completed */
+  onboarded?: boolean;
 }
 export interface Account {
   id: number;

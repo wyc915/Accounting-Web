@@ -1,0 +1,21 @@
+{
+  "appId": "com.wyc915.diandi",
+  "appName": "點滴記帳",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "CapacitorSQLite": {
+      "androidIsEncryption": true,
+      "iosIsEncryption": true,
+      "iosKeychainPrefix": "diandi",
+      "electronIsEncryption": false
+    },
+    "SplashScreen": {
+      "launchShowDuration": 600,
+      "backgroundColor": "#ecfdf5",
+      "showSpinner": false
+    }
+  }
+}

@@ -6,12 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n server,web -c green,cyan \"npm run dev -w apps/server\" \"npm run dev -w apps/web\"",
-    "build": "npm run build -w apps/web",
-    "start": "npm run start -w apps/server"
+    "dev": "npm run dev -w apps/mobile",
+    "build": "npm run build -w apps/mobile",
+    "test": "npm test -w packages/core",
+    "android:sync": "npm run cap:sync -w apps/mobile",
+    "android:open": "npm run cap:open -w apps/mobile"
   },
   "devDependencies": {
-    "concurrently": "^9.2.5",
     "typescript": "^7.0.2"
   },
   "optionalDependencies": {

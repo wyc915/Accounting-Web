@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 點滴記帳 logo: three growing drops (from public/icon.svg, 512 → 72dp visible area) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+  <group android:translateX="18" android:translateY="18">
+    <group android:scaleX="0.140625" android:scaleY="0.140625">
+      <group android:translateX="256" android:translateY="256">
+        <group android:scaleX="0.86" android:scaleY="0.86">
+          <group android:translateX="-275.7" android:translateY="-275.8">
+            <group android:translateX="119.5" android:translateY="338.5">
+              <group android:scaleX="1.195" android:scaleY="1.195">
+                <path android:fillColor="#6ee7b7" android:pathData="M0,-50 C20,-24 36,-6 36,14 A36,36 0 0 1 -36,14 C-36,-6 -20,-24 0,-50 Z"/>
+              </group>
+            </group>
+            <group android:translateX="233.2" android:translateY="310">
+              <group android:scaleX="1.763" android:scaleY="1.763">
+                <path android:fillColor="#34d399" android:pathData="M0,-50 C20,-24 36,-6 36,14 A36,36 0 0 1 -36,14 C-36,-6 -20,-24 0,-50 Z"/>
+              </group>
+            </group>
+            <group android:translateX="386.8" android:translateY="275.9">
+              <group android:scaleX="2.446" android:scaleY="2.446">
+                <path android:fillColor="#059669" android:pathData="M0,-50 C20,-24 36,-6 36,14 A36,36 0 0 1 -36,14 C-36,-6 -20,-24 0,-50 Z"/>
+              </group>
+            </group>
+          </group>
+        </group>
+      </group>
+    </group>
+  </group>
+</vector>

@@ -4,3 +4,7 @@ data
 *.log
 .env
 .env.*
+apps/mobile/public/assets/sql-wasm.wasm
+
+# IDE settings (Android Studio / IntelliJ)
+.idea/
